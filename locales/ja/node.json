@@ -1,0 +1,18 @@
+{
+  "gitlabapi" : {
+    "label" : {
+      "api": "API",
+      "path": "API Path",
+      "method": "HTTP Method",
+      "uid": "ID",
+      "params": "Parameters"
+    },
+    "desc" : {
+      "api": "API (projects,issues,job ETC)",
+      "path": "/:id/jobs, /:id/issues/:issue_iid/move, Ref https://docs.gitlab.com/ee/api/",
+      "method": "get,post,put,delete",
+      "uid": "ex) project id, issue id",
+      "params": "parameters"
+    }
+  }
+}

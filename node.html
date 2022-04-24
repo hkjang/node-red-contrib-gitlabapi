@@ -1,0 +1,118 @@
+<script type="text/html" data-template-name="gitlabapi">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span
+                data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-creds"> <i class="fa fa-key fa-fw"></i> API key</span></label>
+        <input type="text" id="node-input-creds">
+    </div>
+    <div class="form-row"><label for="node-input-api"><i class="fa"></i> <span
+            data-i18n="gitlabapi.label.api"></span> </label> <input type="text"
+                                                                        id="node-input-api"
+                                                                        data-i18n="[placeholder]gitlabapi.desc.api">
+    </div>
+    <div class="form-row"><label for="node-input-path"><i class="fa"></i> <span
+            data-i18n="gitlabapi.label.path"></span> </label> <input type="text"
+                                                                      id="node-input-path"
+                                                                      data-i18n="[placeholder]gitlabapi.desc.path">
+    </div>
+    <div class="form-row"><label for="node-input-method"><i class="fa"></i> <span
+            data-i18n="gitlabapi.label.method"></span></label> <input type="text"
+                                                                       id="node-input-method"
+                                                                       data-i18n="[placeholder]gitlabapi.desc.method">
+    </div>
+    <div class="form-row"><label for="node-input-uid"><i class="fa"></i> <span data-i18n="gitlabapi.label.uid"></span></label>
+        <input type="text"
+               id="node-input-uid"
+               data-i18n="[placeholder]gitlabapi.desc.uid">
+    </div>
+    <div class="form-row"><label for="node-input-params"><i class="fa"></i> <span
+            data-i18n="gitlabapi.label.params"></span></label> <input type="text"
+                                                                     id="node-input-params"
+                                                                     data-i18n="[placeholder]gitlabapi.desc.params">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="gitlabapi">
+    <p>Summary of the node.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload<span class="property-type">object</span></dt>
+        <dd>Explanation of payload.</dd>
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>Explanation of topic.</dd>
+    </dl>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload<span class="property-type">object</span></dt>
+        <dd>Explanation of payload.</dd>
+        <dt class="optional">topic<span class="property-type">string</span></dt>
+        <dd>Explanation of topic.</dd>
+    </dl>
+    <h3>Details</h3>
+    <p>Explanation of the details.</p>
+    <p><b>Note</b>: Note of the node.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('gitlabapi', {
+        color: '#ffffff',
+        category: 'function',
+        defaults: {
+            name: {value: ''},
+            api: {value: "", required: false},
+            path: {value: "", required: false},
+            method: {value: "", required: false},
+            uid: {value: "", required: false},
+            params: {value: "", required: false},
+            creds: {
+                value: "",
+                type: "gitlabapiApiKey"
+            },
+        },
+        inputs: 1,
+        outputs: 1,
+        label: function () {
+            return this.name || 'gitlab API';
+        },
+        icon: 'icon.png',
+        align: 'left'
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="gitlabapiApiKey">
+    <div class="form-row">
+        <label for="node-input-name"> <i class="fa fa-tag fa-fw"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+      <label for="node-config-input-gitlab_url"> Gitlab URL</label>
+      <input type="text" id="node-config-input-gitlab_url" placeholder="Gitlab URL">
+    </div>
+    <div class="form-row">
+      <label for="node-config-input-access_token"> Access Token</label>
+      <input type="text" id="node-config-input-access_token" placeholder="Access Token">
+    </div>
+
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('gitlabapiApiKey', {
+        category: 'config',
+        defaults: {
+            name: {value: ""}
+        },
+        credentials: {
+            access_token: {},
+            gitlab_url: {},
+        },
+        label: function () {
+            return this.name || 'API Key';
+        }
+    });
+</script>
+

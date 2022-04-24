@@ -1,0 +1,33 @@
+{
+  "name": "node-red-contrib-gitlabapi",
+  "version": "0.0.1",
+  "description": "Node-RED node for gitlabapi",
+  "main": "node.js",
+  "scripts": {
+    "test": "mocha \"test/**/*_spec.js\" --timeout 3000"
+  },
+  "node-red": {
+    "nodes": {
+      "gitlabapi": "node.js"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/hkjang/node-red-contrib-gitlabapi/issues"
+  },
+  "homepage": "https://github.com/hkjang/node-red-contrib-gitlabapi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkjang/node-red-contrib-gitlabapi.git"
+  },
+  "keywords": [
+    "node-red-contrib-contribgen",
+    "node-red",
+    "gitlabapi",
+    "gitlab API",
+    "nodejs"
+  ],
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "license": "Apache-2.0"
+}
