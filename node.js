@@ -25,7 +25,7 @@ module.exports = function (RED) {
                 if(node.api){
                     // node.gitlab_url=https://gitlab.example.com/api/v4/
                     // /projects/:id/jobs --> api=projects, path=/:id/jobs
-                    node.url = node.gitlab_url + node.api.toLowerCase() + node.path.toLowerCase();
+                    node.url = node.gitlab_url + node.api.toLowerCase() + node.path;
                 }else{
                     node.url = node.gitlab_url; // https://gitlab.example.com/api/v4/
                 }
@@ -46,7 +46,8 @@ module.exports = function (RED) {
                     msg.payload = response.data;
                     node.send(msg);
                 }).catch(function (err){
-                msg.payload = err;
+                msg.payload = node.url+'\n';
+                msg.payload += err;
                 node.send(msg);
             });
         });
