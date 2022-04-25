@@ -13,6 +13,10 @@ command in your Node-RED user directory, typically `~/.node-red`
 ## Wrapper gitlab API   
 - https://docs.gitlab.com/ee/api/
 
+## Credentials Node for Access Token & URL
+- access_token : https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+- url :  https://gitlab.example.com/api/v4/
+
 ## Sample parameters
 ```js
 // msg.method = 'get';
