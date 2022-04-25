@@ -21,16 +21,14 @@ module.exports = function (RED) {
                     node[i] =  msg[i] || node[i];
                 }
             }
-            if(!node.url){
-                if(node.api){
-                    // node.gitlab_url=https://gitlab.example.com/api/v4/
-                    // /projects/:id/jobs --> api=projects, path=/:id/jobs
-                    node.url = node.gitlab_url + node.api.toLowerCase() + node.path;
-                }else{
-                    node.url = node.gitlab_url; // https://gitlab.example.com/api/v4/
-                }
+            if(node.api){
+                // node.gitlab_url=https://gitlab.example.com/api/v4/
+                // /projects/:id/jobs --> api=projects, path=/:id/jobs
+                node.url = node.gitlab_url + node.api.toLowerCase() + node.path.toLowerCase();
+            }else{
+                node.url = node.gitlab_url; // https://gitlab.example.com/api/v4/
             }
-
+            node.error(node.url)
             node.options = {};
             node.options.headers = {};
             if(node.params){
@@ -46,8 +44,7 @@ module.exports = function (RED) {
                     msg.payload = response.data;
                     node.send(msg);
                 }).catch(function (err){
-                msg.payload = node.url+'\n';
-                msg.payload += err;
+                msg.payload = err;
                 node.send(msg);
             });
         });
