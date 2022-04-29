@@ -415,6 +415,268 @@
     "wires": []
   },
   {
+    "id": "c18511acd84b267d",
+    "type": "inject",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 540,
+    "wires": [
+      [
+        "6bbccec2f797dd52"
+      ]
+    ]
+  },
+  {
+    "id": "6bbccec2f797dd52",
+    "type": "function",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "func": "// msg.method = 'get';\n// msg.api = 'projects';\n// msg.path = '';\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 320,
+    "y": 540,
+    "wires": [
+      [
+        "0f45b2a32b4f90d2"
+      ]
+    ]
+  },
+  {
+    "id": "0f45b2a32b4f90d2",
+    "type": "gitlabapi",
+    "z": "a3e8559a.484128",
+    "name": "get projects",
+    "api": "projects",
+    "path": "",
+    "method": "get",
+    "uid": "",
+    "params": "",
+    "creds": "08d3b4a33e35254d",
+    "x": 530,
+    "y": 540,
+    "wires": [
+      [
+        "df35a58c753be4c4",
+        "501dd97e75d3a32b"
+      ]
+    ]
+  },
+  {
+    "id": "df35a58c753be4c4",
+    "type": "debug",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "0577cf022a926b9e",
+    "type": "function",
+    "z": "a3e8559a.484128",
+    "name": "project issue with params",
+    "func": "msg.method = 'get';\nmsg.api = '/projects';\nmsg.path = '/' + msg.payload.id + '/issues';\nmsg.params = {}\n// msg.params.assignee_id=1\n// msg.params.author_id=5\n// msg.params.labels='test'\n// msg.params.state='opened'\n// msg.params.state='closed'\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 570,
+    "y": 580,
+    "wires": [
+      [
+        "d62762e69527dcba"
+      ]
+    ]
+  },
+  {
+    "id": "d62762e69527dcba",
+    "type": "gitlabapi",
+    "z": "a3e8559a.484128",
+    "name": "get issues",
+    "api": "",
+    "path": "",
+    "method": "",
+    "uid": "",
+    "params": "",
+    "creds": "08d3b4a33e35254d",
+    "x": 760,
+    "y": 580,
+    "wires": [
+      [
+        "1e843047b4c9cc11",
+        "cdc9c69e9a16c7d8"
+      ]
+    ]
+  },
+  {
+    "id": "b5f9f50314381bdc",
+    "type": "delay",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "pauseType": "rate",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 330,
+    "y": 580,
+    "wires": [
+      [
+        "0577cf022a926b9e"
+      ]
+    ]
+  },
+  {
+    "id": "501dd97e75d3a32b",
+    "type": "split",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 170,
+    "y": 580,
+    "wires": [
+      [
+        "b5f9f50314381bdc"
+      ]
+    ]
+  },
+  {
+    "id": "1e843047b4c9cc11",
+    "type": "debug",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 930,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "c13dcb968676999d",
+    "type": "delay",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "pauseType": "rate",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 330,
+    "y": 620,
+    "wires": [
+      [
+        "3c21ac0eb9f3861f"
+      ]
+    ]
+  },
+  {
+    "id": "cdc9c69e9a16c7d8",
+    "type": "split",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 170,
+    "y": 620,
+    "wires": [
+      [
+        "c13dcb968676999d"
+      ]
+    ]
+  },
+  {
+    "id": "3c21ac0eb9f3861f",
+    "type": "function",
+    "z": "a3e8559a.484128",
+    "name": "if issue exist",
+    "func": "if(msg.payload){\n    if(msg.payload.id){\n        return msg;        \n    }\n}\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 620,
+    "wires": [
+      [
+        "3c6608112c562aa5"
+      ]
+    ]
+  },
+  {
+    "id": "3c6608112c562aa5",
+    "type": "debug",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 620,
+    "wires": []
+  },
+  {
     "id": "08d3b4a33e35254d",
     "type": "gitlabapiApiKey",
     "name": ""
