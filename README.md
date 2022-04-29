@@ -14,8 +14,8 @@ command in your Node-RED user directory, typically `~/.node-red`
 - https://docs.gitlab.com/ee/api/
 
 ## Credentials Node for Access Token & URL
-- access_token : https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
-- url :  https://gitlab.example.com/api/v4/
+- your gitlab access_token : https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+- your gitlab api url :  https://gitlab.example.com/api/v4/
 
 ## Sample parameters
 ```js
@@ -36,4 +36,4 @@ You can make this json string into a flow by using the node-red flow import func
 
 - [sample.json](examples/sample.json)
 
-![alt](examples/sample.PNG)
+![alt](examples/sample.png)

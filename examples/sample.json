@@ -20,8 +20,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 180,
-    "y": 200,
+    "x": 160,
+    "y": 340,
     "wires": [
       [
         "37d4aa9ad0bca0e6"
@@ -39,8 +39,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 330,
-    "y": 200,
+    "x": 310,
+    "y": 340,
     "wires": [
       [
         "dabfac751d594ac1"
@@ -58,8 +58,8 @@
     "uid": "",
     "params": "",
     "creds": "08d3b4a33e35254d",
-    "x": 550,
-    "y": 200,
+    "x": 530,
+    "y": 340,
     "wires": [
       [
         "47ee58b03ba30289"
@@ -78,8 +78,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 750,
-    "y": 200,
+    "x": 730,
+    "y": 340,
     "wires": []
   },
   {
@@ -103,8 +103,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 180,
-    "y": 320,
+    "x": 160,
+    "y": 460,
     "wires": [
       [
         "8d0cfa395e3b5d59"
@@ -122,8 +122,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 360,
-    "y": 320,
+    "x": 340,
+    "y": 460,
     "wires": [
       [
         "8b621182a9fd8224"
@@ -141,8 +141,8 @@
     "uid": "",
     "params": "",
     "creds": "08d3b4a33e35254d",
-    "x": 540,
-    "y": 320,
+    "x": 520,
+    "y": 460,
     "wires": [
       [
         "4262dbae0113213a"
@@ -161,8 +161,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 750,
-    "y": 320,
+    "x": 730,
+    "y": 460,
     "wires": []
   },
   {
@@ -186,8 +186,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 180,
-    "y": 240,
+    "x": 160,
+    "y": 380,
     "wires": [
       [
         "b081c1d6aba85c2d"
@@ -205,8 +205,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 330,
-    "y": 240,
+    "x": 310,
+    "y": 380,
     "wires": [
       [
         "7869649417673d6d"
@@ -224,8 +224,8 @@
     "uid": "",
     "params": "",
     "creds": "08d3b4a33e35254d",
-    "x": 560,
-    "y": 240,
+    "x": 540,
+    "y": 380,
     "wires": [
       [
         "13c0c7033f011eee"
@@ -244,8 +244,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 750,
-    "y": 240,
+    "x": 730,
+    "y": 380,
     "wires": []
   },
   {
@@ -269,8 +269,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 180,
-    "y": 280,
+    "x": 160,
+    "y": 420,
     "wires": [
       [
         "993041fc9ad18a83"
@@ -288,8 +288,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 360,
-    "y": 280,
+    "x": 340,
+    "y": 420,
     "wires": [
       [
         "1aa68c32d981e852"
@@ -307,8 +307,8 @@
     "uid": "",
     "params": "",
     "creds": "08d3b4a33e35254d",
-    "x": 550,
-    "y": 280,
+    "x": 530,
+    "y": 420,
     "wires": [
       [
         "347625bcd4f9564d"
@@ -327,8 +327,91 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 750,
-    "y": 280,
+    "x": 730,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "edbb11515c562b42",
+    "type": "inject",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 500,
+    "wires": [
+      [
+        "ca8744959a199b25"
+      ]
+    ]
+  },
+  {
+    "id": "ca8744959a199b25",
+    "type": "function",
+    "z": "a3e8559a.484128",
+    "name": "project with params",
+    "func": "msg.method = 'post';\nmsg.api = 'projects';\nmsg.path = '/1/issues';\nmsg.params = {};\nmsg.params.title= 'gitlab rest api post test'\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 340,
+    "y": 500,
+    "wires": [
+      [
+        "9e2c68612f126888"
+      ]
+    ]
+  },
+  {
+    "id": "9e2c68612f126888",
+    "type": "gitlabapi",
+    "z": "a3e8559a.484128",
+    "name": "post projects",
+    "api": "projects",
+    "path": "",
+    "method": "",
+    "uid": "",
+    "params": "",
+    "creds": "08d3b4a33e35254d",
+    "x": 530,
+    "y": 500,
+    "wires": [
+      [
+        "591812db198597a5"
+      ]
+    ]
+  },
+  {
+    "id": "591812db198597a5",
+    "type": "debug",
+    "z": "a3e8559a.484128",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 500,
     "wires": []
   },
   {

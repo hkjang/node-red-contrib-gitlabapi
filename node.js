@@ -24,22 +24,31 @@ module.exports = function (RED) {
             if(node.api){
                 // node.gitlab_url=https://gitlab.example.com/api/v4/
                 // /projects/:id/jobs --> api=projects, path=/:id/jobs
-                node.url = node.gitlab_url + node.api.toLowerCase() + node.path.toLowerCase();
+                node.url = node.gitlab_url + node.api.toLowerCase() + node.path;
             }else{
                 node.url = node.gitlab_url; // https://gitlab.example.com/api/v4/
             }
-            node.error(node.url)
+
+            // node.error(node.url);
+            // node.error(node.method);
+            // node.error(node.params);
+            // node.error(node.access_token);
+            node.data = {};
+            node.data.headers = {};
             node.options = {};
             node.options.headers = {};
-            if(node.params){
-                node.options.params = node.params;
+            if(node.method.toLowerCase() === 'get' && node.params){
+                node.data.params = node.params;
+                node.data.headers['PRIVATE-TOKEN'] = node.access_token;
+            }else if(node.method.toLowerCase() !== 'get' && node.params){
+                node.data = node.params;
+                node.options.headers['PRIVATE-TOKEN'] = node.access_token;
             }else{
-                node.options.params = {};
-                node.options.params = n.params;
-
+                node.data.params = {};
+                node.data.params = n.params;
+                node.data.headers['PRIVATE-TOKEN'] = node.access_token;
             }
-            node.options.headers['PRIVATE-TOKEN'] = node.access_token;
-            axios[node.method.toLowerCase()](node.url, node.options)
+            axios[node.method.toLowerCase()](node.url, node.data, node.options)
                 .then(function (response){
                     msg.payload = response.data;
                     node.send(msg);
